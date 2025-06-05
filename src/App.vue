@@ -1,8 +1,19 @@
 <template>
   <div class="container">
     <h1>Welcome to Coin Top-Up!</h1>
+    <TopUpForm />
   </div>
 </template>
+
+<script>
+import TopUpForm from './components/TopUpForm.vue'
+
+export default {
+  components: {
+    TopUpForm
+  }
+}
+</script>
 
 <style>
 .container {
