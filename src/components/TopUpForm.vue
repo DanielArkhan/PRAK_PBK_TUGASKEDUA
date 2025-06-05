@@ -2,7 +2,7 @@
   <form class="card">
     <label>
       Username:
-      <input type="text" />
+      <input type="text" v-model="username" />
     </label>
     <br />
     <label>
@@ -15,3 +15,13 @@
     <button type="submit">Top-Up Sekarang</button>
   </form>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      username: ''
+    }
+  }
+}
+</script>
