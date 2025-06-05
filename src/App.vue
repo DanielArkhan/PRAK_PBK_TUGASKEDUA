@@ -2,7 +2,11 @@
   <div class="container">
     <h1>Welcome to Coin Top-Up!</h1>
     <TopUpForm @success="showSuccess" />
-    <Notification v-if="success" />
+    <Notification
+      v-if="success"
+      :username="notifData.username"
+      :packageName="notifData.packageName"
+    />
   </div>
 </template>
 
@@ -11,19 +15,22 @@ import TopUpForm from './components/TopUpForm.vue'
 import Notification from './components/Notification.vue'
 
 export default {
-  components: {
-    TopUpForm,
-    Notification
-  },
+  components: { TopUpForm, Notification },
   data() {
     return {
-      success: false
+      success: false,
+      notifData: {
+        username: '',
+        packageName: ''
+      }
     }
   },
   methods: {
-    showSuccess() {
+    showSuccess(data) {
+      console.log('Terima data dari TopUpForm:', data)  // debug log
+      this.notifData = data
       this.success = true
-      setTimeout(() => this.success = false, 3000)
+      setTimeout(() => (this.success = false), 3000)
     }
   }
 }

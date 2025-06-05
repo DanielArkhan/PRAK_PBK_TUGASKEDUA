@@ -7,9 +7,9 @@
 
     <div class="form-group">
       <label>Pilih Paket:</label>
-      <select v-model="selectedPackage" required>
+      <select v-model="selectedPackageId" required>
         <option disabled value="">--Pilih Paket--</option>
-        <option v-for="pkg in packages" :key="pkg.id" :value="pkg">
+        <option v-for="pkg in packages" :key="pkg.id" :value="pkg.id">
           {{ pkg.name }} - Rp{{ pkg.price }}
         </option>
       </select>
@@ -24,7 +24,7 @@ export default {
   data() {
     return {
       username: '',
-      selectedPackage: '',
+      selectedPackageId: '',
       packages: [
         { id: 1, name: '50 GC', price: 5000 },
         { id: 2, name: '120 GC', price: 10000 },
@@ -34,9 +34,16 @@ export default {
   },
   methods: {
     submitForm() {
-      this.$emit('success')
+      const selectedPkg = this.packages.find(pkg => pkg.id === Number(this.selectedPackageId))
+      if (!this.username || !selectedPkg) return
+
+      this.$emit('success', {
+        username: this.username,
+        packageName: selectedPkg.name
+      })
+
       this.username = ''
-      this.selectedPackage = ''
+      this.selectedPackageId = ''
     }
   }
 }

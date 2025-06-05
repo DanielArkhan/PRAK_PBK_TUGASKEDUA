@@ -1,9 +1,14 @@
 <template>
   <div class="notification-card">
-    ✅ Top-Up berhasil! Terima kasih!
+    ✅ Top-up untuk {{ username }} sejumlah {{ packageName }} berhasil!
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: {
+    username: { type: String, required: true },
+    packageName: { type: String, required: true }
+  }
+}
 </script>
