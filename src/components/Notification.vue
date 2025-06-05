@@ -1,14 +1,15 @@
 <template>
   <div class="notification-card">
-    ✅ Top-up untuk {{ username }} sejumlah {{ packageName }} berhasil!
+    ✅ Top-up untuk {{ username }} sejumlah {{ packageName }} berhasil via {{ paymentMethod }}!
   </div>
 </template>
 
 <script>
 export default {
   props: {
-    username: { type: String, required: true },
-    packageName: { type: String, required: true }
+    username: String,
+    packageName: String,
+    paymentMethod: String
   }
 }
 </script>

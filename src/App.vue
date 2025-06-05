@@ -17,20 +17,22 @@ import Notification from './components/Notification.vue'
 export default {
   components: { TopUpForm, Notification },
   data() {
-    return {
-      success: false,
-      notifData: {
-        username: '',
-        packageName: ''
-      }
+  return {
+    success: false,
+    notifData: {
+      username: '',
+      packageName: '',
+      paymentMethod: ''
     }
-  },
+  }
+},
   methods: {
     showSuccess(data) {
-      console.log('Terima data dari TopUpForm:', data)  // debug log
-      this.notifData = data
-      this.success = true
-      setTimeout(() => (this.success = false), 3000)
+      this.notifData = data;
+      this.success = true;
+      setTimeout(() => {
+        this.success = false;
+      }, 3000);
     }
   }
 }

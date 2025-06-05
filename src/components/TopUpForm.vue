@@ -15,6 +15,16 @@
       </select>
     </div>
 
+    <div class="form-group">
+      <label>Metode Pembayaran:</label>
+      <select v-model="selectedPayment" required>
+        <option disabled value="">--Pilih Metode Pembayaran--</option>
+        <option v-for="method in paymentMethods" :key="method.id" :value="method.name">
+          {{ method.name }}
+        </option>
+      </select>
+    </div>
+
     <button type="submit">Top-Up Sekarang</button>
   </form>
 </template>
@@ -22,28 +32,39 @@
 <script>
 export default {
   data() {
-    return {
-      username: '',
-      selectedPackageId: '',
+  return {
+    username: '',
+    selectedPackageId: '',
+    selectedPackage: null,
+    selectedPayment: '',
       packages: [
         { id: 1, name: '50 GC', price: 5000 },
         { id: 2, name: '120 GC', price: 10000 },
         { id: 3, name: '250 GC', price: 20000 }
+      ],
+      paymentMethods: [
+        { id: 'credit', name: 'Credit Card' },
+        { id: 'paypal', name: 'PayPal' },
+        { id: 'bank', name: 'Bank Transfer' }
       ]
     }
   },
   methods: {
     submitForm() {
-      const selectedPkg = this.packages.find(pkg => pkg.id === Number(this.selectedPackageId))
-      if (!this.username || !selectedPkg) return
+      this.selectedPackage = this.packages.find(pkg => pkg.id === this.selectedPackageId)
+
+      if (!this.username || !this.selectedPackage || !this.selectedPayment) return;
 
       this.$emit('success', {
         username: this.username,
-        packageName: selectedPkg.name
-      })
+        packageName: this.selectedPackage.name,
+        paymentMethod: this.selectedPayment
+      });
 
-      this.username = ''
-      this.selectedPackageId = ''
+      this.username = '';
+      this.selectedPackage = null;
+      this.selectedPackageId = '';
+      this.selectedPayment = '';
     }
   }
 }
