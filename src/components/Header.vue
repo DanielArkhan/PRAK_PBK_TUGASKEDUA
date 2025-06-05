@@ -1,4 +1,3 @@
-<!-- src/components/Header.vue -->
 <template>
   <header class="header">
     <div class="logo">
@@ -11,13 +10,14 @@
         <button @click="search"><i class="fas fa-search"></i></button>
       </div>
       <nav class="links">
-        <a href="#price-list">Price List</a>
-        <a href="#contact">Contact Us</a>
+        <router-link to="/pricelist">Price List</router-link>
+        <router-link to="/contact">Contact Us</router-link>
         <button class="login-btn" @click="login">Login</button>
       </nav>
     </div>
   </header>
 </template>
+
 
 <script>
 export default {
@@ -104,7 +104,7 @@ export default {
 }
 
 .login-btn {
-  background: #377dff;
+  background: #ff0000;
   color: white;
   border: none;
   padding: 8px 16px;

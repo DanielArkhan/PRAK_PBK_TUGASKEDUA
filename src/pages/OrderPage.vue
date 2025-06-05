@@ -1,7 +1,7 @@
 <template>
   <div class="order-page">
     <h2>Top Up: {{ gameNameFormatted }}</h2>
-    <TopUpForm @success="$emit('success', $event)" />
+    <TopUpForm :game="gameNameFormatted" @success="$emit('success', $event)" />
   </div>
 </template>
 
@@ -16,7 +16,9 @@ export default {
       const map = {
         genshin: 'Genshin Impact',
         ml: 'Mobile Legends',
-        hsr: 'Honkai Star Rail'
+        hsr: 'Honkai Star Rail',
+        pubg: 'PUBG Mobile',
+        ff: 'Free Fire'
       };
       return map[this.game] || 'Game';
     }

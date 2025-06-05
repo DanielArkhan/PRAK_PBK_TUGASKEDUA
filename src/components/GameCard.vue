@@ -1,17 +1,30 @@
 <template>
-  <div class="card" @click="goToOrder">
+  <div class="card">
     <img :src="game.image" :alt="game.name" />
     <h3>{{ game.name }}</h3>
-    <button>Top Up</button>
+    <button @click.stop="onTopUpClick">{{ buttonText }}</button>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['game'],
+  props: {
+    game: Object,
+    prices: Array,
+    buttonText: {
+      type: String,
+      default: 'Top Up'
+    }
+  },
   methods: {
-    goToOrder() {
-      this.$router.push(`/order/${this.game.route}`)
+    onTopUpClick() {
+      if (this.$route.name === 'Home') {
+        // Navigasi ke halaman order jika di halaman Home
+        this.$router.push({ name: 'OrderPage', params: { game: this.game.name } });
+      } else {
+        // Emit event jika di halaman Pricelist
+        this.$emit('show-prices', this.game.name);
+      }
     }
   }
 }
@@ -43,10 +56,30 @@ h3 {
 }
 
 button {
-  background-color: #4d3eff;
+  background-color: #ff0000;
   color: white;
   border: none;
   padding: 8px 12px;
   border-radius: 10px;
+}
+
+.price-list {
+  margin-top: 12px;
+  text-align: left;
+}
+
+.price-list table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-list th, .price-list td {
+  padding: 6px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+}
+
+.price-list th {
+  background-color: #f5f5f5;
 }
 </style>
