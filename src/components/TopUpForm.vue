@@ -1,19 +1,20 @@
 <template>
   <form class="card" @submit.prevent="submitForm">
-    <label>
-      Username:
-      <input type="text" v-model="username" />
-    </label>
-    <br />
-    <label>
-      Pilih Paket:
+    <div class="form-group">
+      <label>Username:</label>
+      <input type="text" v-model="username" required />
+    </div>
+
+    <div class="form-group">
+      <label>Pilih Paket:</label>
       <select v-model="selectedPackage" required>
         <option disabled value="">--Pilih Paket--</option>
         <option v-for="pkg in packages" :key="pkg.id" :value="pkg">
-          {{ pkg.name }} - Rp{{ pkg.price }} </option>
+          {{ pkg.name }} - Rp{{ pkg.price }}
+        </option>
       </select>
-    </label>
-    <br />
+    </div>
+
     <button type="submit">Top-Up Sekarang</button>
   </form>
 </template>
@@ -32,7 +33,7 @@ export default {
     }
   },
   methods: {
-    submitForm () {
+    submitForm() {
       alert(`Top-up untuk ${this.username} sejumlah ${this.selectedPackage.name} berhasil!`)
       this.username = ''
       this.selectedPackage = ''
@@ -40,3 +41,46 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.card {
+  background-color: #fff2cc;
+  border-radius: 20px;
+  padding: 16px;
+  margin: 10px 0;
+  box-shadow: 4px 4px 0px #000;
+}
+
+.form-group {
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+input, select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 2px solid #ffb347;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+button {
+  background-color: #ff5c5c;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 16px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 100%;
+}
+button:hover {
+  background-color: #e44d4d;
+}
+</style>
