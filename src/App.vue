@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <h1>Welcome to Coin Top-Up!</h1>
-    <TopUpForm />
-    <Notification />
+    <TopUpForm @success="showSuccess" />
+    <Notification v-if="success" />
   </div>
 </template>
 
@@ -14,6 +14,17 @@ export default {
   components: {
     TopUpForm,
     Notification
+  },
+  data() {
+    return {
+      success: false
+    }
+  },
+  methods: {
+    showSuccess() {
+      this.success = true
+      setTimeout(() => this.success = false, 3000)
+    }
   }
 }
 </script>

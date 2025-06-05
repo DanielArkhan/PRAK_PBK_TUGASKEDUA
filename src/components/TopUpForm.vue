@@ -34,7 +34,7 @@ export default {
   },
   methods: {
     submitForm() {
-      alert(`Top-up untuk ${this.username} sejumlah ${this.selectedPackage.name} berhasil!`)
+      this.$emit('success')
       this.username = ''
       this.selectedPackage = ''
     }
