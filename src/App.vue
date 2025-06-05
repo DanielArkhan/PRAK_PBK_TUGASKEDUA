@@ -2,15 +2,18 @@
   <div class="container">
     <h1>Welcome to Coin Top-Up!</h1>
     <TopUpForm />
+    <Notification />
   </div>
 </template>
 
 <script>
 import TopUpForm from './components/TopUpForm.vue'
+import Notification from './components/Notification.vue'
 
 export default {
   components: {
-    TopUpForm
+    TopUpForm,
+    Notification
   }
 }
 </script>
