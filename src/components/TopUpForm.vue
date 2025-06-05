@@ -7,8 +7,10 @@
     <br />
     <label>
       Pilih Paket:
-      <select>
-        <option disabled selected>--Pilih Paket--</option>
+      <select v-model="selectedPackage" required>
+        <option disabled value="">--Pilih Paket--</option>
+        <option v-for="pkg in packages" :key="pkg.id" :value="pkg">
+          {{ pkg.name }} - Rp{{ pkg.price }} </option>
       </select>
     </label>
     <br />
@@ -20,7 +22,13 @@
 export default {
   data() {
     return {
-      username: ''
+      username: '',
+      selectedPackage: '',
+      packages: [
+        { id: 1, name: '50 GC', price: 5000 },
+        { id: 2, name: '120 GC', price: 10000 },
+        { id: 3, name: '250 GC', price: 20000 }
+      ]
     }
   }
 }
