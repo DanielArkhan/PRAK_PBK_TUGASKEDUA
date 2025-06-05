@@ -1,6 +1,9 @@
 <template>
   <header class="header">
     <div class="logo">
+      <router-link to="/" class="home-link" title="Home">
+        <i class="fas fa-home"></i>
+      </router-link>
       <img src="/icon.png" alt="Logo" />
       <span>Coin Top-Up</span>
     </div>
@@ -111,4 +114,17 @@ export default {
   border-radius: 8px;
   cursor: pointer;
 }
+
+.home-link {
+  font-size: 24px;
+  color: #333;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+.home-link:hover {
+  color: #ff0000;
+}
+
 </style>

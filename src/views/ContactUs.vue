@@ -5,7 +5,7 @@
     <ul>
       <li>Email: support@topupstore.com</li>
       <li>WhatsApp: +62 812-3456-7890</li>
-      <li>Instagram: @topupstore</li>
+      <li>Instagram: @i<3jiya</li>
     </ul>
   </div>
 </template>
