@@ -4,7 +4,7 @@
     <div class="footer-top">
       <div class="brand">
         <img src="/icon.png" alt="Logo" />
-        <span>Analog Store</span>
+        <span>Coin Top-Up</span>
       </div>
       <div class="socials">
         <a href="#"><i class="fab fa-instagram"></i></a>
