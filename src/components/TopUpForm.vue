@@ -1,114 +1,75 @@
 <template>
-  <form class="card" @submit.prevent="submitForm">
-    <div class="form-group">
-      <label>Username:</label>
-      <input type="text" v-model="username" required />
-    </div>
+  <form @submit.prevent="submitForm">
+    <label>Username</label>
+    <input v-model="username" placeholder="Enter your ID" />
 
-    <div class="form-group">
-      <label>Pilih Paket:</label>
-      <select v-model="selectedPackageId" required>
-        <option disabled value="">--Pilih Paket--</option>
-        <option v-for="pkg in packages" :key="pkg.id" :value="pkg.id">
-          {{ pkg.name }} - Rp{{ pkg.price }}
-        </option>
-      </select>
-    </div>
+    <label>Pilih Nominal</label>
+    <select v-model="packageName">
+      <option disabled value="">--Pilih--</option>
+      <option v-for="option in packages" :key="option">{{ option }}</option>
+    </select>
 
-    <div class="form-group">
-      <label>Metode Pembayaran:</label>
-      <select v-model="selectedPayment" required>
-        <option disabled value="">--Pilih Metode Pembayaran--</option>
-        <option v-for="method in paymentMethods" :key="method.id" :value="method.name">
-          {{ method.name }}
-        </option>
-      </select>
-    </div>
+    <label>Metode Pembayaran</label>
+    <select v-model="paymentMethod">
+      <option disabled value="">--Pilih--</option>
+      <option>QRIS</option>
+      <option>Bank Transfer</option>
+      <option>OVO</option>
+    </select>
 
-    <button type="submit">Top-Up Sekarang</button>
+    <button type="submit">Bayar Sekarang</button>
   </form>
 </template>
 
 <script>
 export default {
   data() {
-  return {
-    username: '',
-    selectedPackageId: '',
-    selectedPackage: null,
-    selectedPayment: '',
-      packages: [
-        { id: 1, name: '50 GC', price: 5000 },
-        { id: 2, name: '120 GC', price: 10000 },
-        { id: 3, name: '250 GC', price: 20000 }
-      ],
-      paymentMethods: [
-        { id: 'credit', name: 'Credit Card' },
-        { id: 'paypal', name: 'PayPal' },
-        { id: 'bank', name: 'Bank Transfer' }
-      ]
+    return {
+      username: '',
+      packageName: '',
+      paymentMethod: '',
+      packages: ['60 Crystals', '300 + 30 Crystals', '6480 + 1600 Crystals']
     }
   },
   methods: {
     submitForm() {
-      this.selectedPackage = this.packages.find(pkg => pkg.id === this.selectedPackageId)
-
-      if (!this.username || !this.selectedPackage || !this.selectedPayment) return;
+      if (!this.username || !this.packageName || !this.paymentMethod) {
+        alert('Lengkapi semua data!')
+        return
+      }
 
       this.$emit('success', {
         username: this.username,
-        packageName: this.selectedPackage.name,
-        paymentMethod: this.selectedPayment
-      });
+        packageName: this.packageName,
+        paymentMethod: this.paymentMethod
+      })
 
-      this.username = '';
-      this.selectedPackage = null;
-      this.selectedPackageId = '';
-      this.selectedPayment = '';
+      this.username = ''
+      this.packageName = ''
+      this.paymentMethod = ''
     }
   }
 }
 </script>
 
 <style scoped>
-.card {
-  background-color: #fff2cc;
-  border-radius: 20px;
-  padding: 16px;
-  margin: 10px 0;
-  box-shadow: 4px 4px 0px #000;
-}
-
-.form-group {
-  margin-bottom: 12px;
-}
-
-.form-group label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 4px;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 input, select {
-  padding: 8px;
-  border-radius: 6px;
-  border: 2px solid #ffb347;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
 }
 
 button {
-  background-color: #ff5c5c;
-  border: none;
-  border-radius: 10px;
-  padding: 10px 16px;
+  background-color: #4d3eff;
   color: white;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.3s;
-  width: 100%;
-}
-button:hover {
-  background-color: #e44d4d;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
 }
 </style>
