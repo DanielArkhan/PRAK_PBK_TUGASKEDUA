@@ -1,5 +1,5 @@
 <template>
-  <form class="card">
+  <form class="card" @submit.prevent="submitForm">
     <label>
       Username:
       <input type="text" v-model="username" />
@@ -29,6 +29,13 @@ export default {
         { id: 2, name: '120 GC', price: 10000 },
         { id: 3, name: '250 GC', price: 20000 }
       ]
+    }
+  },
+  methods: {
+    submitForm () {
+      alert(`Top-up untuk ${this.username} sejumlah ${this.selectedPackage.name} berhasil!`)
+      this.username = ''
+      this.selectedPackage = ''
     }
   }
 }
