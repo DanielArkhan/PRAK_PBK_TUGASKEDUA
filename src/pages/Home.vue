@@ -3,6 +3,8 @@
     <h1 class="title">Coin Top-up</h1>
     <h2 class="subtitle">Simple, Easy, and Trusted</h2>
     
+    <Carousel />
+    
     <div class="game-list">
       <GameCard
         v-for="game in games"
@@ -24,9 +26,11 @@
 <script>
 import GameCard from '../components/GameCard.vue'
 import TopUpForm from '../components/TopUpForm.vue'
+import Carousel from '../components/Carousel.vue'
+import Carousel from '../components/Carousel.vue'
 
 export default {
-  components: { GameCard, TopUpForm },
+  components: { GameCard, TopUpForm, Carousel },
   data() {
     return {
       selectedGame: null,
