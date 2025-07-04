@@ -6,7 +6,7 @@
       "gameId": "28749102",
       "packageName": "86 Diamonds",
       "game": "Mobile Legends",
-      "paymentMethod": "GOPAY",
+      "paymentMethod": "GoPAY",
       "status": "pending",
       "date": "2025-07-04T14:32:00"
     },
@@ -44,7 +44,7 @@
       "username": "1234",
       "packageName": "6480 + 1600 Crystals",
       "price": 1080000,
-      "paymentMethod": "Bank Transfer",
+      "paymentMethod": "BNI Mobile",
       "status": "pending",
       "date": "2025-07-04T11:41:33.314Z"
     },
@@ -74,6 +74,15 @@
       "paymentMethod": "OVO",
       "status": "pending",
       "date": "2025-07-04T13:53:04.485Z"
+    },
+    {
+      "id": "63f5",
+      "username": "9999",
+      "packageName": "60 Crystals",
+      "price": 10000,
+      "paymentMethod": "Alfamart",
+      "status": "pending",
+      "date": "2025-07-04T14:21:18.623Z"
     }
   ],
   "users": [

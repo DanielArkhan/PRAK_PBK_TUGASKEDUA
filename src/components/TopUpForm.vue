@@ -20,17 +20,21 @@
     </div>
 
     <label>Metode Pembayaran</label>
-    <div class="card-group">
-      <div
-        v-for="method in paymentMethods"
-        :key="method.name"
-        class="card-option"
-        :class="{ selected: paymentMethod === method.name }"
-        @click="paymentMethod = method.name"
-      >
-        {{ method.name }}
-        <div v-if="paymentMethod === method.name" class="price-tag">
-          {{ method.detail }}
+
+    <div v-for="category in paymentCategories" :key="category.name">
+      <h4 class="category-title">{{ category.name }}</h4>
+      <div class="card-group">
+        <div
+          v-for="method in category.methods"
+          :key="method.name"
+          class="card-option"
+          :class="{ selected: paymentMethod === method.name }"
+          @click="paymentMethod = method.name"
+        >
+          {{ method.name }}
+          <div v-if="paymentMethod === method.name" class="price-tag">
+            {{ method.detail }}
+          </div>
         </div>
       </div>
     </div>
@@ -55,10 +59,35 @@ const packages = [
   { name: '6480 + 1600 Crystals', price: 1080000 }
 ]
 
-const paymentMethods = [
-  { name: 'QRIS', detail: 'Bayar via QR Code' },
-  { name: 'Bank Transfer', detail: 'Transfer manual via bank' },
-  { name: 'OVO', detail: 'Bayar dengan OVO' }
+const paymentCategories = [
+  {
+    name: 'E-Wallet',
+    methods: [
+      { name: 'QRIS', detail: 'Bayar via QR Code' },
+      { name: 'OVO', detail: 'Bayar dengan OVO' },
+      { name: 'GoPay', detail: 'Bayar dengan GoPay' },
+      { name: 'DANA', detail: 'Bayar dengan DANA' },
+      { name: 'ShopeePay', detail: 'Bayar dengan ShopeePay' },
+      { name: 'LinkAja', detail: 'Bayar dengan LinkAja' }
+    ]
+  },
+  {
+    name: 'Mobile Banking',
+    methods: [
+      { name: 'BCA Mobile', detail: 'Transfer via BCA Mobile' },
+      { name: 'BNI Mobile', detail: 'Transfer via BNI Mobile' },
+      { name: 'BRImo', detail: 'Transfer via BRImo' },
+      { name: 'BSI Mobile', detail: 'Transfer via BSI Mobile' },
+      { name: 'Livin', detail: 'Transfer via Livin by Mandiri' }
+    ]
+  },
+  {
+    name: 'Ritel',
+    methods: [
+      { name: 'Indomaret', detail: 'Bayar di Indomaret' },
+      { name: 'Alfamart', detail: 'Bayar di Alfamart' }
+    ]
+  }
 ]
 
 async function submitForm() {
@@ -152,5 +181,12 @@ button {
   padding: 12px;
   border-radius: 10px;
   cursor: pointer;
+}
+
+.category-title {
+  margin: 16px 0 8px;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
 }
 </style>
