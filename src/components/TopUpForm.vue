@@ -13,7 +13,6 @@
         @click="packageName = option.name"
       >
         {{ option.name }}
-        <!-- Tampilkan harga kalau kartu ini terpilih -->
         <div v-if="packageName === option.name" class="price-tag">
           Harga: Rp {{ option.price.toLocaleString() }}
         </div>
@@ -41,19 +40,19 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
       username: '',
       packageName: '',
       paymentMethod: '',
-      // Paket dengan harga
       packages: [
         { name: '60 Crystals', price: 10000 },
         { name: '300 + 30 Crystals', price: 55000 },
         { name: '6480 + 1600 Crystals', price: 1080000 }
       ],
-      // Metode pembayaran dengan detail (bisa harga atau deskripsi)
       paymentMethods: [
         { name: 'QRIS', detail: 'Bayar via QR Code' },
         { name: 'Bank Transfer', detail: 'Transfer manual via bank' },
@@ -62,19 +61,36 @@ export default {
     };
   },
   methods: {
-    submitForm() {
+    async submitForm() {
       if (!this.username || !this.packageName || !this.paymentMethod) {
         alert('Lengkapi semua data!');
         return;
       }
-      this.$emit('success', {
+
+      const selectedPackage = this.packages.find(
+        (p) => p.name === this.packageName
+      );
+
+      const orderData = {
         username: this.username,
         packageName: this.packageName,
-        paymentMethod: this.paymentMethod
-      });
-      this.username = '';
-      this.packageName = '';
-      this.paymentMethod = '';
+        price: selectedPackage ? selectedPackage.price : null,
+        paymentMethod: this.paymentMethod,
+        status: 'pending',
+        date: new Date().toISOString()
+      };
+
+      try {
+        await axios.post('http://localhost:3000/orders', orderData);
+        alert('Pesanan berhasil dikirim!');
+        this.$emit('success', orderData);
+        this.username = '';
+        this.packageName = '';
+        this.paymentMethod = '';
+      } catch (error) {
+        console.error(error);
+        alert('Terjadi kesalahan saat mengirim pesanan.');
+      }
     }
   }
 };
@@ -106,7 +122,7 @@ input {
   border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   position: relative;
 }
 
@@ -132,5 +148,6 @@ button {
   border: none;
   padding: 12px;
   border-radius: 10px;
+  cursor: pointer;
 }
 </style>

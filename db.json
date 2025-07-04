@@ -1,7 +1,7 @@
 {
   "orders": [
     {
-      "id": 1,
+      "id": "1",
       "username": "dragonSlayer99",
       "gameId": "28749102",
       "packageName": "86 Diamonds",
@@ -11,7 +11,7 @@
       "date": "2025-07-04T14:32:00"
     },
     {
-      "id": 2,
+      "id": "2",
       "username": "raiden_main",
       "gameId": "13456007",
       "packageName": "300 Genesis Crystals",
@@ -21,7 +21,7 @@
       "date": "2025-07-03T10:15:00"
     },
     {
-      "id": 3,
+      "id": "3",
       "username": "noobmaster",
       "gameId": "7654321",
       "packageName": "70 UC",
@@ -29,11 +29,20 @@
       "paymentMethod": "ShopeePay",
       "status": "pending",
       "date": "2025-07-02T08:00:00"
+    },
+    {
+      "id": "e5d8",
+      "username": "1234",
+      "packageName": "60 Crystals",
+      "price": 10000,
+      "paymentMethod": "QRIS",
+      "status": "pending",
+      "date": "2025-07-04T11:23:50.135Z"
     }
   ],
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Admin",
       "email": "admin@gamecoin.com"
     }
