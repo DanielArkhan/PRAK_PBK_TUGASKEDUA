@@ -27,6 +27,7 @@
 import GameCard from '../components/GameCard.vue'
 import TopUpForm from '../components/TopUpForm.vue'
 import Carousel from '../components/Carousel.vue'
+import OrderList from '../components/OrderList.vue'
 
 export default {
   components: { GameCard, TopUpForm, Carousel },

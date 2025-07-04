@@ -39,61 +39,57 @@
   </form>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue'
 import axios from 'axios'
 
-export default {
-  data() {
-    return {
-      username: '',
-      packageName: '',
-      paymentMethod: '',
-      packages: [
-        { name: '60 Crystals', price: 10000 },
-        { name: '300 + 30 Crystals', price: 55000 },
-        { name: '6480 + 1600 Crystals', price: 1080000 }
-      ],
-      paymentMethods: [
-        { name: 'QRIS', detail: 'Bayar via QR Code' },
-        { name: 'Bank Transfer', detail: 'Transfer manual via bank' },
-        { name: 'OVO', detail: 'Bayar dengan OVO' }
-      ]
-    };
-  },
-  methods: {
-    async submitForm() {
-      if (!this.username || !this.packageName || !this.paymentMethod) {
-        alert('Lengkapi semua data!');
-        return;
-      }
+const emit = defineEmits(['success'])
 
-      const selectedPackage = this.packages.find(
-        (p) => p.name === this.packageName
-      );
+const username = ref('')
+const packageName = ref('')
+const paymentMethod = ref('')
 
-      const orderData = {
-        username: this.username,
-        packageName: this.packageName,
-        price: selectedPackage ? selectedPackage.price : null,
-        paymentMethod: this.paymentMethod,
-        status: 'pending',
-        date: new Date().toISOString()
-      };
+const packages = [
+  { name: '60 Crystals', price: 10000 },
+  { name: '300 + 30 Crystals', price: 55000 },
+  { name: '6480 + 1600 Crystals', price: 1080000 }
+]
 
-      try {
-        await axios.post('http://localhost:3000/orders', orderData);
-        alert('Pesanan berhasil dikirim!');
-        this.$emit('success', orderData);
-        this.username = '';
-        this.packageName = '';
-        this.paymentMethod = '';
-      } catch (error) {
-        console.error(error);
-        alert('Terjadi kesalahan saat mengirim pesanan.');
-      }
-    }
+const paymentMethods = [
+  { name: 'QRIS', detail: 'Bayar via QR Code' },
+  { name: 'Bank Transfer', detail: 'Transfer manual via bank' },
+  { name: 'OVO', detail: 'Bayar dengan OVO' }
+]
+
+async function submitForm() {
+  if (!username.value || !packageName.value || !paymentMethod.value) {
+    alert('Lengkapi semua data!')
+    return
   }
-};
+
+  const selectedPackage = packages.find(p => p.name === packageName.value)
+
+  const orderData = {
+    username: username.value,
+    packageName: packageName.value,
+    price: selectedPackage ? selectedPackage.price : null,
+    paymentMethod: paymentMethod.value,
+    status: 'pending',
+    date: new Date().toISOString()
+  }
+
+  try {
+    await axios.post('http://localhost:3000/orders', orderData)
+    alert('Pesanan berhasil dikirim!')
+    emit('success', orderData)
+    username.value = ''
+    packageName.value = ''
+    paymentMethod.value = ''
+  } catch (error) {
+    console.error(error)
+    alert('Terjadi kesalahan saat mengirim pesanan.')
+  }
+}
 </script>
 
 <style scoped>
@@ -101,6 +97,12 @@ form {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 20px;
+  background: #fdfdfd;
+  border-radius: 12px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 input {
@@ -113,6 +115,7 @@ input {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  justify-content: center;
 }
 
 .card-option {

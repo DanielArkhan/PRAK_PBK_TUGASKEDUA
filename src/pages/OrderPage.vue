@@ -7,6 +7,7 @@
 
 <script>
 import TopUpForm from '../components/TopUpForm.vue';
+import OrderList from '../components/OrderList.vue';
 
 export default {
   components: { TopUpForm },
