@@ -1,0 +1,41 @@
+{
+  "orders": [
+    {
+      "id": 1,
+      "username": "dragonSlayer99",
+      "gameId": "28749102",
+      "packageName": "86 Diamonds",
+      "game": "Mobile Legends",
+      "paymentMethod": "GOPAY",
+      "status": "pending",
+      "date": "2025-07-04T14:32:00"
+    },
+    {
+      "id": 2,
+      "username": "raiden_main",
+      "gameId": "13456007",
+      "packageName": "300 Genesis Crystals",
+      "game": "Genshin Impact",
+      "paymentMethod": "OVO",
+      "status": "completed",
+      "date": "2025-07-03T10:15:00"
+    },
+    {
+      "id": 3,
+      "username": "noobmaster",
+      "gameId": "7654321",
+      "packageName": "70 UC",
+      "game": "PUBG Mobile",
+      "paymentMethod": "ShopeePay",
+      "status": "pending",
+      "date": "2025-07-02T08:00:00"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "name": "Admin",
+      "email": "admin@gamecoin.com"
+    }
+  ]
+}
