@@ -1,10 +1,12 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../pages/Home.vue';
-import OrderPage from '../pages/OrderPage.vue';
-import Pricelist from '../views/PriceList.vue';
-import ContactUs from '../views/ContactUs.vue';
-import OrderView from '../views/OrderView.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+import Home from '../pages/Home.vue'
+import OrderPage from '../pages/OrderPage.vue'
+import Pricelist from '../views/PriceList.vue'
+import ContactUs from '../views/ContactUs.vue'
+import OrderView from '../views/OrderView.vue'
+import LoginView from '../views/LoginView.vue'
 
+import { useUserStore } from '@/stores/userStore'
 
 const routes = [
   {
@@ -30,19 +32,35 @@ const routes = [
     component: ContactUs
   },
   {
+    path: '/login',
+    name: 'Login',
+    component: LoginView
+  },
+  {
     path: '/orders',
-    name: 'orders',
-    component: OrderView
+    name: 'Orders',
+    component: OrderView,
+    meta: { requiresAdmin: true }
   },
   {
     path: '/:pathMatch(.*)*',
     redirect: '/'
   }
-];
+]
 
 const router = createRouter({
   history: createWebHistory(),
   routes
-});
+})
 
-export default router;
+// ✅ Guard: hanya 'admin' yang bisa akses /orders
+router.beforeEach((to, from, next) => {
+  const store = useUserStore()
+  if (to.meta.requiresAdmin && store.username !== 'admin') {
+    alert('Akses ditolak. Halaman ini hanya bisa diakses oleh admin.')
+    return next('/') // redirect ke Home jika bukan admin
+  }
+  next()
+})
+
+export default router

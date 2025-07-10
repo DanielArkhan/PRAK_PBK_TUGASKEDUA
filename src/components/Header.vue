@@ -7,37 +7,35 @@
       <img src="/icon.png" alt="Logo" />
       <span>Coin Top-Up</span>
     </div>
+
     <div class="nav">
       <div class="search">
         <input type="text" v-model="searchQuery" placeholder="Search games..." />
         <button @click="search"><i class="fas fa-search"></i></button>
       </div>
+
       <nav class="links">
         <router-link to="/pricelist">Price List</router-link>
         <router-link to="/contact">Contact Us</router-link>
-        <button class="login-btn" @click="login">Login</button>
+        <router-link to="/login" class="login-btn">Login</router-link>
       </nav>
     </div>
   </header>
 </template>
-
 
 <script>
 export default {
   data() {
     return {
       searchQuery: ''
-    };
+    }
   },
   methods: {
     search() {
-      alert(`Searching for: ${this.searchQuery}`);
-    },
-    login() {
-      alert("Login page will open here");
+      alert(`Searching for: ${this.searchQuery}`)
     }
   }
-};
+}
 </script>
 
 <style scoped>
@@ -48,7 +46,7 @@ export default {
   padding: 16px 32px;
   background: #ffffff;
   border-bottom: 2px solid #eee;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
@@ -107,7 +105,7 @@ export default {
 }
 
 .login-btn {
-  background: #ff0000;
+  background: white;
   color: white;
   border: none;
   padding: 8px 16px;
@@ -123,8 +121,8 @@ export default {
   align-items: center;
   text-decoration: none;
 }
+
 .home-link:hover {
   color: #ff0000;
 }
-
 </style>

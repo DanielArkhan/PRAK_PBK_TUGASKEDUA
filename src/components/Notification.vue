@@ -1,12 +1,25 @@
 <template>
   <div class="notif">
-    ✅ Top-up untuk <b>{{ username }}</b> sejumlah <b>{{ packageName }}</b> berhasil via <b>{{ paymentMethod }}</b>!
+    <template v-if="type === 'topup'">
+      ✅ Top-up untuk <b>{{ username }}</b> sejumlah <b>{{ packageName }}</b> berhasil via <b>{{ paymentMethod }}</b>!
+    </template>
+    <template v-else-if="type === 'login'">
+      ✅ Berhasil login sebagai <b>{{ username }}</b>!
+    </template>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['username', 'packageName', 'paymentMethod']
+  props: {
+    type: {
+      type: String,
+      default: 'topup'
+    },
+    username: String,
+    packageName: String,
+    paymentMethod: String
+  }
 }
 </script>
 
